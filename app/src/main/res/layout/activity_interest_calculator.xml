@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.options.InterestCalculator">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:elevation="0dp"
+        android:theme="@style/ToolbarTheme"
+        app:layout_scrollFlags="scroll|enterAlways|snap"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:titleTextColor="@color/textColorPrimary"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="Interest Calculator"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:textSize="36dp"
+        android:textColor="@color/primary_text_expense"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="16dp"
+        android:hint="Principle Amount">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/principalAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="16dp"
+        android:hint="Interest in percentages">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/interestPercentage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="16dp"
+        android:hint="Months">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/monthsRange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+<!--    <EditText-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:layout_margin="20dp"-->
+<!--        android:layout_gravity="bottom"-->
+<!--        android:textSize="24dp"-->
+<!--        android:hint="Principle Amount"-->
+<!--        android:id="@+id/principalAmount"-->
+<!--        />-->
+<!--    <EditText-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:layout_margin="20dp"-->
+<!--        android:layout_gravity="bottom"-->
+<!--        android:textSize="24dp"-->
+<!--        android:hint="Interest in percentage"-->
+<!--        android:id="@+id/interestPercentage"-->
+<!--        />-->
+<!--    <EditText-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:hint="Months"-->
+<!--        android:textSize="24dp"-->
+<!--        android:layout_gravity="bottom"-->
+<!--        android:layout_margin="20dp"-->
+<!--        android:id="@+id/monthsRange"-->
+<!--        />-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Interest Amount :"
+        android:gravity=""
+        android:textColor="@color/primary_text_expense"
+        android:fontFamily="sans-serif-black"
+        android:layout_margin="20dp"
+        android:id="@+id/onlyInterest"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Principle with Interest:"
+        android:gravity=""
+        android:textColor="@color/primary_text_expense"
+        android:fontFamily="sans-serif-black"
+        android:layout_margin="20dp"
+        android:id="@+id/principalWithInterest"
+        />
+
+
+    <Button
+        android:id="@+id/calculate"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="200dp"
+        android:layout_height="52dp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:text="Calculate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+<!--    <Button-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:text="Calculate"-->
+<!--        android:textSize="24dp"-->
+<!--        android:textColor="#FFF"-->
+<!--        android:background="#2196f3"-->
+<!--        android:layout_margin="40dp"-->
+<!--        android:id="@+id/calculate"/>-->
+
+
+
+
+
+
+
+</LinearLayout>

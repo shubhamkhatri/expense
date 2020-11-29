@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Private Finance</string>
+    <string name="pref_key_custom_categories">custom_categories</string>
+
+    <string name="appid">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="bannerid">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="interstitialid">ca-app-pub-3940256099942544/6300978111</string>
+
+</resources>
