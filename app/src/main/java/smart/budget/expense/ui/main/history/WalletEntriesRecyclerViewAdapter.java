@@ -5,19 +5,31 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+
+import androidx.constraintlayout.solver.widgets.Rectangle;
 import androidx.fragment.app.FragmentActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.firebase.database.FirebaseDatabase;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 
+import java.io.FileOutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 import smart.budget.expense.R;
 import smart.budget.expense.firebase.FirebaseElement;
@@ -38,24 +50,30 @@ public class WalletEntriesRecyclerViewAdapter extends RecyclerView.Adapter<Walle
     private final FragmentActivity fragmentActivity;
     private ListDataSet<WalletEntry> walletEntries;
 
+    private String city;
     private User user;
     private boolean firstUserSync = false;
+    String listText="";
 
-    public WalletEntriesRecyclerViewAdapter(FragmentActivity fragmentActivity, String uid) {
+
+    public WalletEntriesRecyclerViewAdapter(FragmentActivity fragmentActivity, String uid, String city) {
         this.fragmentActivity = fragmentActivity;
         this.uid = uid;
+        this.city = city;
 
-        UserProfileViewModelFactory.getModel(uid,fragmentActivity).observe(fragmentActivity, new FirebaseObserver<FirebaseElement<User>>() {
+        UserProfileViewModelFactory.getModel(uid, fragmentActivity).observe(fragmentActivity, new FirebaseObserver<FirebaseElement<User>>() {
             @Override
             public void onChanged(FirebaseElement<User> element) {
-                if(!element.hasNoError()) return;
+                if (!element.hasNoError()) return;
                 WalletEntriesRecyclerViewAdapter.this.user = element.getElement();
-                if(!firstUserSync) {
+                if (!firstUserSync) {
                     WalletEntriesHistoryViewModelFactory.getModel(uid, fragmentActivity).observe(fragmentActivity, new FirebaseObserver<FirebaseElement<ListDataSet<WalletEntry>>>() {
                         @Override
                         public void onChanged(FirebaseElement<ListDataSet<WalletEntry>> element) {
-                            if(element.hasNoError()) {
+                            if (element.hasNoError()) {
                                 walletEntries = element.getElement();
+                                //checkCity();
+                                generateText(walletEntries.getList());
                                 element.getElement().notifyRecycler(WalletEntriesRecyclerViewAdapter.this);
 
                             }
@@ -67,6 +85,47 @@ public class WalletEntriesRecyclerViewAdapter extends RecyclerView.Adapter<Walle
             }
         });
 
+    }
+
+
+    public String sendListText(){
+        return listText;
+    }
+
+    private void generateText(List<WalletEntry> walletEntryList) {
+        if(walletEntryList.size()>0) {
+            WalletEntry w = walletEntryList.get((walletEntryList.size()) - 1);
+            long s = w.balanceDifference;
+            String state = "";
+            if (s < 0)
+                state = "withdraw";
+            else
+                state = "deposited";
+
+            listText = listText + "Name: " + w.name
+                    + "\nCity: " + w.village
+                    + "\nAmount: " + CurrencyHelper.formatCurrency(user.currency, w.balanceDifference)
+                    + "\nState: " + state
+                    + "\n\n";
+
+        }
+    }
+
+
+    private void checkCity() {
+        if (!city.equals("default")) {
+            int i = 0;
+            for (WalletEntry w : walletEntries.getList()) {
+                String s="City is : "+city
+                        +"\n Village is : "+w.village;
+                //TODO Extract the Complete list and compare to the walletEntries.village field and use the updated list in recycler view
+                //System.out.println("city................." + city + "..............village is........" + w.village);
+                if (!city.equals(w.village)) {
+                    walletEntries.getList().remove(i);
+                }
+                i++;
+            }
+        }
     }
 
     @Override

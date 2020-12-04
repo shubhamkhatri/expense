@@ -4,19 +4,27 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
+
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
@@ -35,9 +43,9 @@ import smart.budget.expense.util.CurrencyHelper;
 import smart.budget.expense.R;
 import smart.budget.expense.firebase.models.WalletEntry;
 
-public class AddWalletEntryActivity extends CircularRevealActivity {
+public class AddWalletEntryActivity extends CircularRevealActivity implements AdapterView.OnItemSelectedListener{
 
-    private Spinner selectCategorySpinner;
+    private Spinner selectCategorySpinner,selectCitySpinner;
     private TextInputEditText selectNameEditText;
     private TextInputEditText selectMobileEditText;
     private Calendar chosenDate;
@@ -53,6 +61,10 @@ public class AddWalletEntryActivity extends CircularRevealActivity {
     private TextInputLayout selectMobileInputLayout;
     private TextInputLayout selectVillageInputLayout;
     private TextInputLayout selectDescriptionInputLayout;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private ArrayList<String> city=new ArrayList<String>();
+    private String City;
+
 
     public AddWalletEntryActivity() {
         super(R.layout.activity_add_wallet_entry, R.id.activity_contact_fab, R.id.root_layout, R.id.root_layout2);
@@ -80,6 +92,8 @@ public class AddWalletEntryActivity extends CircularRevealActivity {
         selectMobileInputLayout = findViewById(R.id.select_mobile_inputlayout);
         selectVillageInputLayout = findViewById(R.id.select_village_inputlayout);
         selectDescriptionInputLayout = findViewById(R.id.select_description_inputlayout);
+        selectCitySpinner=(Spinner)findViewById(R.id.select_city_spinner);
+        updateCitySpinner();
         chosenDate = Calendar.getInstance();
 
         UserProfileViewModelFactory.getModel(getUid(), this).observe(this, new FirebaseObserver<FirebaseElement<User>>() {
@@ -120,6 +134,7 @@ public class AddWalletEntryActivity extends CircularRevealActivity {
         addEntryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(AddWalletEntryActivity.this,"City : "+City,Toast.LENGTH_LONG).show();
                 try {
                     addToWallet(((selectTypeSpinner.getSelectedItemPosition() * 2) - 1) *
                                     CurrencyHelper.convertAmountStringToLong(selectAmountEditText.getText().toString()),
@@ -140,6 +155,21 @@ public class AddWalletEntryActivity extends CircularRevealActivity {
         });
 
 
+    }
+
+    private void updateCitySpinner() {
+        db.collection("data").document("city").get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        city = (ArrayList<String>) documentSnapshot.get("city");
+
+                        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(AddWalletEntryActivity.this, android.R.layout.simple_spinner_item, city);
+                        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        selectCitySpinner.setAdapter(adapter1);
+                        selectCitySpinner.setOnItemSelectedListener(AddWalletEntryActivity.this);
+                    }
+                });
     }
 
     private void dateUpdated() {
@@ -216,4 +246,13 @@ public class AddWalletEntryActivity extends CircularRevealActivity {
     }
 
 
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            City=city.get(i);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+        Toast.makeText(AddWalletEntryActivity.this,"Please select city",Toast.LENGTH_SHORT).show();
+    }
 }
