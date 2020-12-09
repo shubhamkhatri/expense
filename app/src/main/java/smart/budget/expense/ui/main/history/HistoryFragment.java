@@ -75,7 +75,7 @@ public class HistoryFragment extends BaseFragment {
     private Spinner citySpinner;
     private String listText = "";
     private static final int STORAGE_CODE = 1000;
-    
+
     public static HistoryFragment newInstance() {
 
         return new HistoryFragment();
