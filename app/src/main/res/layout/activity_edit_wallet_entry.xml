@@ -294,6 +294,51 @@
                             app:layout_constraintGuide_percent="0.6" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="16dp">
+
+                        <RadioButton
+                            android:id="@+id/radio_installment_12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="12 Installment"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="10dp"
+                            android:paddingLeft="10dp"/>
+
+                        <RadioButton
+                            android:id="@+id/radio_installment_24"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="24 Installment"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="10dp"
+                            android:paddingLeft="10dp"/>
+
+                        <RadioButton
+                            android:id="@+id/radio_installment_36"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="36 Installment"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="10dp"
+                            android:paddingLeft="10dp"/>
+
+                        <RadioButton
+                            android:id="@+id/radio_installment_48"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="48 Installment"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="10dp"
+                            android:paddingLeft="10dp"/>
+
+                    </RadioGroup>
+
                 </LinearLayout>
             </ScrollView>
 

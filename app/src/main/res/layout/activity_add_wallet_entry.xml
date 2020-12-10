@@ -27,16 +27,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:pressedTranslationZ="8dp" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/root_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/root_layout2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/backgroundPrimary"
-            >
+            android:background="@color/backgroundPrimary">
+
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -119,8 +121,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/select_name_edittext"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                             />
+                            android:layout_height="wrap_content" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -140,7 +141,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="number"
-                            app:errorEnabled="true"/>
+                            app:errorEnabled="true" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -160,7 +161,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="number"
-                            app:errorEnabled="true"/>
+                            app:errorEnabled="true" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -180,7 +181,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="text"
-                            app:errorEnabled="true"/>
+                            app:errorEnabled="true" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -190,7 +191,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="8dp"
-                        android:layout_marginBottom="16dp"/>
+                        android:layout_marginBottom="16dp" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/select_description_inputlayout"
@@ -209,7 +210,7 @@
                             android:layout_height="150dp"
                             android:gravity="top"
                             android:inputType="textMultiLine"
-                            app:errorEnabled="true"/>
+                            app:errorEnabled="true" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -305,6 +306,50 @@
                             app:layout_constraintGuide_percent="0.6" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="16dp">
+
+                        <RadioButton
+                            android:id="@+id/radio_installment_12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="12 Installment"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="10dp"
+                            android:paddingLeft="10dp"/>
+
+                        <RadioButton
+                            android:id="@+id/radio_installment_24"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="24 Installment"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="10dp"
+                            android:paddingLeft="10dp"/>
+
+                        <RadioButton
+                            android:id="@+id/radio_installment_36"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="36 Installment"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="10dp"
+                            android:paddingLeft="10dp"/>
+
+                        <RadioButton
+                            android:id="@+id/radio_installment_48"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="48 Installment"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="10dp"
+                            android:paddingLeft="10dp"/>
+
+                    </RadioGroup>
+
                 </LinearLayout>
             </ScrollView>
 
@@ -325,7 +370,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
